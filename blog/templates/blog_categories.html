@@ -11,9 +11,9 @@
                 <li><a href="{% url 'blog:blog_categories' %}#{{ category }}">{{ category }}<span>{{ category.blog_set.count }}</span></a></li>
                 {% endfor %}
             </ul>
-            {% for tag in tags %}
-            <a name={{ category }}></a>
-            <h2>{{ category }} {{category.blog_set.count}}</h2>
+            {% for category in categories %}
+            <a name="{{ category }}"></a>
+            <h2>{{ category }} ({{category.blog_set.count}})</h2>
             <ul>
                 {% for blog in category.blog_set.all %}
                 <li><a href="{% url 'blog:blog_detail' blog.slug %}">{{ blog.caption }}</a></li>

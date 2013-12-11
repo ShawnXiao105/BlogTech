@@ -155,8 +155,3 @@
 #blog-archives h1 a:hover {
     text-decoration: none;
 }
-
-.markdowntxt{
-    width:100%;
-    overflow-x:visible;
-}

@@ -12,8 +12,8 @@
                 {% endfor %}
             </ul>
             {% for tag in tags %}
-            <a name={{ tag }}></a>
-            <h2>{{ tag }} {{tag.blog_set.count}}</h2>
+            <a name="{{ tag.tag_name }}"></a>
+            <h2>{{ tag }} ({{tag.blog_set.count}})</h2>
             <ul>
                 {% for blog in tag.blog_set.all %}
                 <li><a href="{% url 'blog:blog_detail' blog.slug %}">{{ blog.caption }}</a></li>

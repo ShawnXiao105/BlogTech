@@ -6,17 +6,28 @@
             <div class="page-header">
                 <h1>Archives</h1>
             </div>
-            <div id="blog-archive">
-            </div>
+            <div id="blog-archives">
             {% regroup blogs|dictsort:'time' by year as blog_list %}
-            <ul>
                 {% for blog in blog_list %}
-                <li>{{ blog.grouper }}</li>
-                    <ul>
+                <h2>{{ blog.grouper }}</h2>
                         {% for item in blog.list %}
-                        <li>{{ item.blog.blog_introduction }}</li>
+                        <article>
+                            <h1><a href="{% url 'blog:blog_detail' item.blog.slug %}">{{ item.blog.caption }}</a></h1>
+                            <time>{{ item.time|date:"M" }} {{item.time|date:"d"}}</time>
+                            <footer>
+                                <span class="categories">
+                                    Category:
+                                    <a href="{% url 'blog:blog_categories'%}#{{ item.blog.category}}">{{item.blog.category}}</a>
+                                    Tags:
+                                    {% for tag in item.blog.tags.all %}
+                                    <a href="{% url 'blog:blog_tags'%}#{{tag}}">{{tag}}</a>&nbsp; &nbsp;   
+                                    {%endfor%}
+                                    <a href=""></a>
+                                </span>
+                                <p>{{item.blog.blog_introduction}}</p>
+                            </footer>
+                        </article>
                         {% endfor %}
-                    </ul>
                 {% endfor %}
-            </ul>
+            </div>
 {% endblock %}
