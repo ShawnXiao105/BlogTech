@@ -1,0 +1,22 @@
+{% extends "blog_base.html" %}
+
+{% block title %}Archives{% endblock %}
+
+{% block content %}
+            <div class="page-header">
+                <h1>Archives</h1>
+            </div>
+            <div id="blog-archive">
+            </div>
+            {% regroup blogs|dictsort:'time' by year as blog_list %}
+            <ul>
+                {% for blog in blog_list %}
+                <li>{{ blog.grouper }}</li>
+                    <ul>
+                        {% for item in blog.list %}
+                        <li>{{ item.blog.blog_introduction }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
+{% endblock %}

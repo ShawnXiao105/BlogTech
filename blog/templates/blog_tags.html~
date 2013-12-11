@@ -1,0 +1,23 @@
+{% extends "blog_base.html" %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+            <div class="page-header">
+                <h1>Tags</h1>
+            </div>
+            <ul class="tag_box inline">
+                {% for tag in tags %}
+                <li><a href="{% url 'blog:blog_tags' %}#{{ tag }}">{{ tag }}<span>{{ tag.blog_set.count }}</span></a></li>
+                {% endfor %}
+            </ul>
+            {% for tag in tags %}
+            <a name={{ tag }}></a>
+            <h2>{{ tag }} {{tag.blog_set.count}}</h2>
+            <ul>
+                {% for blog in tag.blog_set.all %}
+                <li><a href="{% url 'blog:blog_detail' blog.slug %}"></a>{{ blog.caption }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+{% endblock %}
