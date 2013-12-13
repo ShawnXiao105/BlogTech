@@ -4,8 +4,10 @@
  <script>
         $(document).ready(function(){
             $('#txtarea').bind('input propertychange', function() {
+                console.log(this.value);
                 $.post("/Markdown/",this.value,function(data){
                      $('#divcontent').html(data.toString());
+                     console.log(data.toString());
                 });
             });
         });

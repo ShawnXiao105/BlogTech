@@ -6,18 +6,14 @@ from django.conf import settings
 import markdown
 
 def markdown_to_html(markdowntext, images):
-    md = markdown.Markdown()
+    #md = markdown.Markdown()
     for image in images:
         image_url = settings.MEDIA_URL + image.image.url
-
-        #append image reference to image instance
-        #md.reference[id] = (url, title)
-        #I set name = id = title
-        #md.reference[image.name] = (image_url, image.name)
-
-
-    #parse source text
-    return md.convert(markdowntext)
+        image_tag = '![%s]' % image.name
+        image_replace = '![%s](%s)' % (image.name, image.image.url)
+        markdowntext = markdowntext.replace(image_tag, image_replace)
+    html = markdown.markdown(markdowntext, extensions=['codehilite(linenums=False)'])
+    return html
 
 # Create your models here.
 class Category(models.Model):

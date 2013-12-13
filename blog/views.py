@@ -44,7 +44,7 @@ def blog_webapps(request):
 @csrf_exempt
 def blog_markdown(request):
     if request.method == 'POST':
-        result = markdown.markdown((request.body).decode('utf-8'))
+        result = markdown.markdown((request.body).decode('utf-8'),extensions=['codehilite'])
         return HttpResponse(result)
     else:
         return HttpResponse("failed")
