@@ -8,9 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-8">
-                    <div id="blog">
-                        {{ blog.body_html|safe|escape }}
-                    </div>
+                    {{ blog.body_html|safe|escape }}
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <h4>Published</h4>

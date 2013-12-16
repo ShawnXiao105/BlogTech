@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/pygments.css' %}">
     <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-    </script>
-    <script type="text/javascript"  src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
     {% block js %}{% endblock %}
     <title>{% block title %} blog_base {% endblock %}</title>
 </head>
