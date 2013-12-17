@@ -3,6 +3,8 @@ from django.db import models
 #from markdown import markdown
 from django.utils import timezone
 from django.conf import settings
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 import markdown
 
 def markdown_to_html(markdowntext, images):
@@ -14,6 +16,12 @@ def markdown_to_html(markdowntext, images):
         markdowntext = markdowntext.replace(image_tag, image_replace)
     html = markdown.markdown(markdowntext, extensions=['codehilite(linenums=False)'])
     return html
+
+@receiver(post_delete, sender=Image)
+def Image_post_delete_handler(sender, **kwargs):
+    image = kwargs['instance']
+    storage, path = image.image.storage, image.image.path
+    storage.delete(path)
 
 # Create your models here.
 class Category(models.Model):
